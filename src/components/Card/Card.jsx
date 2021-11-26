@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './card.module.css';
 
 import Diamond from '../../icons/Diamond';
@@ -6,10 +6,15 @@ import Heart from '../../icons/Heart';
 import Spade from '../../icons/Spade';
 import Club from '../../icons/Club';
 
-export default function Card({ symbol, value, active }) {
+export default function Card({ symbol, value }) {
+    const [active, setActive] = useState(false);
+
+    const handleClick = () => {
+        setActive(!active);
+    }
 
     return (
-        <div className={`${active ? styles.card_active : styles.card} ${(symbol === "diamond" || symbol === "heart") ? styles.red : styles.black}`}>
+        <div onClick={handleClick} className={`${active ? styles.card_active : styles.card} ${(symbol === "diamond" || symbol === "heart") ? styles.red : styles.black}`}>
             {active ? 
             <>
                 <div className={styles.top}>{value}</div>
