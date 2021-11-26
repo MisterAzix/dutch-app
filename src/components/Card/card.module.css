@@ -15,11 +15,14 @@
     
 }
 
-.icon {
-    max-width: 16px;
-    max-height: 16px;
-    align-self: center;
+.red {
+    color: var(--red-card);
+}
 
+.icon {
+    max-width: 24px;
+    max-height: 32px;
+    align-self: center;
 }
 
 .bottom {

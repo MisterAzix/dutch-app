@@ -12,8 +12,8 @@ const Home = () => {
     return (
         <div className={styles.container}>
 
+            <Card symbol="heart" value="A" />
             <Navbar />
-            <Card />
             
             
             
