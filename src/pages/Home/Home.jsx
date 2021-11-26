@@ -2,9 +2,8 @@ import React from "react";
 import logo from '../../logo.svg';
 import styles from './home.module.css';
 
-import Button from '../../components/Button/Button';
 import Navbar from '../../components/NavBar/Navbar';
-import Card from '../../components/Card/Card';
+import PlayerDeck from "../../components/PlayerDeck/PlayerDeck";
 
 const Home = () => {
     // let buttonName = 'Dutch!';
@@ -12,7 +11,7 @@ const Home = () => {
     return (
         <div className={styles.container}>
 
-            <Card symbol="heart" value="A" />
+            <PlayerDeck />
             <Navbar />
             
             
