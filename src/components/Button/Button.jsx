@@ -2,10 +2,10 @@ import React from 'react';
 
 import styles from './button.module.css';
 
-export default function Button() {
+export default function Button(props) {
     return (
-        <div>
-            
-        </div>
+        <button className={styles.btn}>
+           {props.children}
+        </button>
     )
 }
