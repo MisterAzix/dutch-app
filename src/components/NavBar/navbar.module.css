@@ -1,3 +1,17 @@
 .navbar {
     display: flex;
+    justify-content: space-evenly;
+}
+
+.emoji, .chat {
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: var(--primary-font-color);
+    height: 64px;
+    width: 64px;
+    padding: 4px;
+    border-radius: 50%;
+    font-family: var(--font);
+    font-size: 2rem;
 }

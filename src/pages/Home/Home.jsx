@@ -1,13 +1,23 @@
 import React from "react";
 import logo from '../../logo.svg';
 import styles from './home.module.css';
-import Button from '../../components/Button/Button'
+
+import Button from '../../components/Button/Button';
+import Navbar from '../../components/NavBar/Navbar';
 
 const Home = () => {
+    // let buttonName = 'Dutch!';
+
     return (
         <div className={styles.container}>
 
-            <Button>Dutch!</Button>
+            <Navbar></Navbar>
+            
+            
+            
+            
+            
+            {/* <Button value={buttonName}></Button> */}
 
             {/* <header className={styles.header}>
                 <img src={logo} className={styles.logo} alt="logo" />
