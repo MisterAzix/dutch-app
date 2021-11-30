@@ -5,6 +5,7 @@ import Diamond from "../../icons/Diamond";
 import Heart from "../../icons/Heart";
 import Spade from "../../icons/Spade";
 import Club from "../../icons/Club";
+import CardBadge from "../CradBadge/CardBadge";
 
 export default function Card({ symbol, value, defaultActive, placeholder }) {
     const [active, setActive] = useState(false);
@@ -23,6 +24,7 @@ export default function Card({ symbol, value, defaultActive, placeholder }) {
                 symbol === "diamond" || symbol === "heart" ? styles.red : ""
             } ${placeholder ? styles.placeholder : ''}`}
         >
+            <CardBadge />
             {!active || placeholder ? (
                 <>
                     <div className={styles.top_back}></div>
