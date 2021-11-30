@@ -1,4 +1,5 @@
 .container {
+    position: relative;
     max-width: 480px;
     height: 100vh;
     margin: 0 auto;
@@ -12,7 +13,7 @@
 
 .board {
     width: 100%;
-    height: 100%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,8 +21,12 @@
 }
 
 .player_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: auto;
+    height: 60%;
+    padding-bottom: 4rem;
     background-color: var(--secondary--bg-color);
-    padding-top: 4rem;
     border-radius: 50% 50% 0% 0% / 20% 20% 0% 0%;
 }
