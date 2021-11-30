@@ -68,6 +68,31 @@ const Home = () => {
         setPlay(true);
     };
 
+    const handleDutch = () => {
+        playerDeck.length > 0 &&
+            alert(
+                playerDeck
+                    .map(({ value, symbol }) => {
+                        switch (value) {
+                            case "A":
+                                return 1;
+                            case "V":
+                                return 10;
+                            case "D":
+                                return 10;
+                            case "R":
+                                if (symbol === "diamond" || symbol === "heart")
+                                    return 0;
+                                return 13;
+                            default:
+                                return parseInt(value);
+                        }
+                    })
+                    .reduce((prev, curr) => prev + curr),
+                0
+            );
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.board}>
@@ -77,7 +102,10 @@ const Home = () => {
                     defaultActive
                 />
                 {cardPit.length > 0 ? (
-                    <Card symbol={cardPit[0]?.symbol} value={cardPit[0]?.value} />
+                    <Card
+                        symbol={cardPit[0]?.symbol}
+                        value={cardPit[0]?.value}
+                    />
                 ) : (
                     <Card placeholder />
                 )}
@@ -98,7 +126,9 @@ const Home = () => {
                     <Button onClick={handlePlay}>Play</Button>
                 )}
             </div>
-            <Navbar />
+            <Navbar>
+                <Button onClick={handleDutch}>Dutch!</Button>
+            </Navbar>
         </div>
     );
 };
