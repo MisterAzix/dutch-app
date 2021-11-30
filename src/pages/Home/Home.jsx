@@ -27,6 +27,7 @@ const Home = () => {
     const [play, setPlay] = useState(false);
     const [globalDeck, setGlobalDeck] = useState([]);
     const [playerDeck, setPlayerDeck] = useState([]);
+    const [cardPit, setCardPit] = useState([]);
 
     const generateGlobalDeck = () => {
         const tempGlobalDeck = [];
@@ -70,14 +71,27 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <div className={styles.board}>
-                <Card symbol="club" value="8" />
-                <Card symbol="spade" value="4" />
+                <Card
+                    symbol={globalDeck[0]?.symbol}
+                    value={globalDeck[0]?.value}
+                    defaultActive
+                />
+                {cardPit.length > 0 ? (
+                    <Card symbol={cardPit[0]?.symbol} value={cardPit[0]?.value} />
+                ) : (
+                    <Card placeholder />
+                )}
             </div>
             <div className={styles.player_container}>
                 {play ? (
                     <PlayerDeck>
                         {playerDeck.map((card, key) => (
-                            <Card key={key} symbol={card.symbol} value={card.value} />
+                            <Card
+                                key={key}
+                                symbol={card.symbol}
+                                value={card.value}
+                                defaultActive
+                            />
                         ))}
                     </PlayerDeck>
                 ) : (
