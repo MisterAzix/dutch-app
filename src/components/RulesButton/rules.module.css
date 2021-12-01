@@ -1,4 +1,13 @@
+h2 {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    font-weight: bolder;
+}
+
 .btn {
+    position: absolute;
+    top : 1rem;
+    right : 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,10 +17,36 @@
     outline: none;
     background-color: var(--tertiary--bg-color);
     color: var(--primary-font-color);
-    height: 64px;
-    width: 64px;
+    height: 56px;
+    width: 56px;
     border-radius: 50%;
     font-family: var(--font);
     font-size: 1rem;
     cursor: pointer;
 }
+
+.popup {
+    z-index: 100;
+    position: absolute;
+    inset: 0;
+    margin: 1rem;
+    background-color: var(--primary-font-color);
+    color: var(--secondary-font-color);
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    padding: 1rem;
+    border-radius: 16px;
+}
+
+.popup .bold p {
+    font-weight: bold;
+}
+
+.popup .italic p {
+    font-style: italic;
+}
+
+/* .close_btn {
+    padding: 0.5rem 1rem;
+} */
