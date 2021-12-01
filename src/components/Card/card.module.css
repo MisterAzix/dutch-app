@@ -1,4 +1,5 @@
 .card, .card_active {
+    position: relative;
     width: 82px;
     height: 128px;
     margin: 0;
@@ -14,13 +15,17 @@
     cursor: pointer;
 }
 
+.card > *, .card_active > * {
+    pointer-events: none;
+}
+
 .card {
     background-image: var(--card-color);
 }
 
 .placeholder {
-    cursor: default;
-    pointer-events: none;
+    /* cursor: default;
+    pointer-events: none; */
     user-select: none;
     opacity: 0.5;
     border: dashed 4px var(--primary-font-color);

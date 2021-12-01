@@ -21,6 +21,10 @@
     font-size: 1.5rem;
 }
 
+.emoji {
+    cursor: pointer;
+}
+
 
 /* 
 .emoji img {
