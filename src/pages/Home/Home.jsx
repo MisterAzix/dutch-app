@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styles from "./home.module.css";
 
 import { generateGlobalDeck, shuffleGlobalDeck } from "../../libs/deckGenerator";
@@ -9,15 +9,26 @@ import PlayerDeck from "../../components/PlayerDeck/PlayerDeck";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
 import Rules from "../../components/RulesButton/Rules";
+import Modal from "../../components/Modal/Modal";
 
 const Home = () => {
     const [play, setPlay] = useState(false);
+    const [end, setEnd] = useState(false);
     const [globalDeck, setGlobalDeck] = useState([]);
     const [playerDeck, setPlayerDeck] = useState([]);
     const [cardPit, setCardPit] = useState([]);
     const [cardPicked, setCardPicked] = useState(false);
     const [activePlayerCard, setActivePlayerCard] = useState(false);
+    const [modal, setModal] = useState("");
     /* const [round, setRound] = useState(0); */
+
+    useEffect(() => {
+        if (!play) {
+            setGlobalDeck([]);
+            setCardPit([]);
+            setActivePlayerCard(false);
+        }
+    }, [play]);
 
     const handlePlay = () => {
         let tempGlobalDeck = generateGlobalDeck();
@@ -36,46 +47,47 @@ const Home = () => {
     };
 
     const handleDutch = () => {
-        if (!play) return console.log("Game doesn't start!");
+        if (!play) return setModal("Game doesn't start!");
         setActivePlayerCard(true);
-        alert(
-            playerDeck
-                .map(({ value, symbol }) => {
-                    switch (value) {
-                        case "A":
-                            return 1;
-                        case "V":
-                            return 10;
-                        case "D":
-                            return 10;
-                        case "R":
-                            if (symbol === "diamond" || symbol === "heart") return 0;
-                            return 13;
-                        default:
-                            return parseInt(value);
-                    }
-                })
-                .reduce((prev, curr) => prev + curr),
-            0
-        );
+        let score = playerDeck
+            .map(({ value, symbol }) => {
+                switch (value) {
+                    case "A":
+                        return 1;
+                    case "V":
+                        return 10;
+                    case "D":
+                        return 10;
+                    case "R":
+                        if (symbol === "diamond" || symbol === "heart") return 0;
+                        return 13;
+                    default:
+                        return parseInt(value);
+                }
+            })
+            .reduce((prev, curr) => prev + curr);
+        setModal(`You finish the game with ${score} points!`);
+        setEnd(true);
     };
 
     const handlePick = () => {
+        if (!play) return setModal("Game doesn't start!");
         if (cardPicked) return;
-        if (globalDeck.length <= 0) return console.log("Deck is empty!");
+        if (globalDeck.length <= 0) return setModal("Deck is empty!");
         setCardPicked(true);
     };
 
     const handleDeposit = useCallback(() => {
-        if (!cardPicked) return console.log("Please picked up a card in deck before deposit!");
+        if (!play) return setModal("Game doesn't start!");
+        if (!cardPicked) return setModal("Please picked up a card in deck before deposit!");
         setCardPit([...cardPit, { value: globalDeck[0].value, symbol: globalDeck[0].symbol }]);
         handleRemoveItem(0, globalDeck, setGlobalDeck);
         setCardPicked(false);
-    }, [cardPicked, cardPit, globalDeck]);
+    }, [play, cardPicked, cardPit, globalDeck]);
 
     const handleSwitch = useCallback(
         (e) => {
-            if (!cardPicked) return console.log("Please picked up a card in deck before switch!");
+            if (!cardPicked) return setModal("Please picked up a card in deck before switch!");
             handleUpdateItem(
                 e.target.id,
                 {
@@ -98,10 +110,16 @@ const Home = () => {
         [cardPicked, cardPit, globalDeck, playerDeck]
     );
 
+    const handleModal = () => {
+        if (end) setPlay(false);
+        setModal("");
+    }
+
     return (
        
         <div className={styles.container}>
             <Rules className={styles.rules}/>
+            {modal && <Modal onClick={handleModal}>{modal}</Modal>}
             <div className={styles.board}>
                 {globalDeck.length > 0 ? (
                     <Card
