@@ -1,0 +1,17 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: var(--tertiary--bg-color);
+    color: var(--primary-font-color);
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    font-family: var(--font);
+    font-size: 1rem;
+    cursor: pointer;
+}

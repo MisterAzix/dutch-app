@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./navbar.module.css";
 
-const myEmojis = ['🔥', '😝', '😳', '🙀', '🤩', '😸', '😎', '🤭', '🤪', '🤣', '😁'];
+const myEmojis = ['🔥', '😝', '😳', '🙀', '🤩', '😸', '😎', '🤭', '🤪', '🤣', '😁', '😒', '😔', '🧐', '😣', '😠', '🤗', '😶', '😑', '😲', '😮', '😓', '😥', '🤔', '😾'];
 
 export default function Navbar(props) {
     const [emoji, setEmoji] = useState(myEmojis[Math.floor(Math.random() * myEmojis.length)]);

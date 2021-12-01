@@ -5,6 +5,7 @@ import Navbar from "../../components/NavBar/Navbar";
 import PlayerDeck from "../../components/PlayerDeck/PlayerDeck";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
+import Rules from "../../components/RulesButton/Rules";
 
 const cardValues = [
     "A",
@@ -94,7 +95,9 @@ const Home = () => {
     };
 
     return (
+       
         <div className={styles.container}>
+            <Rules className={styles.rules}/>
             <div className={styles.board}>
                 <Card
                     symbol={globalDeck[0]?.symbol}
