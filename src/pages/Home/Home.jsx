@@ -1,29 +1,13 @@
 import React, { useState, useCallback } from "react";
 import styles from "./home.module.css";
 
+import { generateGlobalDeck, shuffleGlobalDeck } from "../../libs/deckGenerator";
 import { handleUpdateItem, handleRemoveItem } from "../../libs/helpers";
 
 import Navbar from "../../components/NavBar/Navbar";
 import PlayerDeck from "../../components/PlayerDeck/PlayerDeck";
 import Card from "../../components/Card/Card";
 import Button from "../../components/Button/Button";
-
-const cardValues = [
-    "A",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "V",
-    "D",
-    "R",
-];
-const cardSymbols = ["diamond", "heart", "club", "spade"];
 
 const Home = () => {
     const [play, setPlay] = useState(false);
@@ -32,30 +16,13 @@ const Home = () => {
     const [cardPit, setCardPit] = useState([]);
     const [cardPicked, setCardPicked] = useState(false);
     const [activePlayerCard, setActivePlayerCard] = useState(false);
+    /* const [round, setRound] = useState(0); */
 
-    const generateGlobalDeck = () => {
-        const tempGlobalDeck = [];
-
-        for (let i = 0; i < cardSymbols.length; i++) {
-            for (let j = 0; j < cardValues.length; j++) {
-                tempGlobalDeck.push({
-                    value: cardValues[j],
-                    symbol: cardSymbols[i],
-                });
-            }
-        }
-        shuffleGlobalDeck(tempGlobalDeck);
-    };
-
-    const shuffleGlobalDeck = (tempGlobalDeck) => {
-        for (let i = tempGlobalDeck.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tempGlobalDeck[i], tempGlobalDeck[j]] = [
-                tempGlobalDeck[j],
-                tempGlobalDeck[i],
-            ];
-        }
-        givePlayerCards(tempGlobalDeck);
+    const handlePlay = () => {
+        let tempGlobalDeck = generateGlobalDeck();
+        let tempShuffledDeck = shuffleGlobalDeck(tempGlobalDeck);
+        givePlayerCards(tempShuffledDeck);
+        setPlay(true);
     };
 
     const givePlayerCards = (tempGlobalDeck) => {
@@ -65,11 +32,6 @@ const Home = () => {
         }
         setGlobalDeck(tempGlobalDeck);
         setPlayerDeck(tempPlayerDeck);
-    };
-
-    const handlePlay = () => {
-        generateGlobalDeck();
-        setPlay(true);
     };
 
     const handleDutch = () => {
@@ -86,8 +48,7 @@ const Home = () => {
                         case "D":
                             return 10;
                         case "R":
-                            if (symbol === "diamond" || symbol === "heart")
-                                return 0;
+                            if (symbol === "diamond" || symbol === "heart") return 0;
                             return 13;
                         default:
                             return parseInt(value);
@@ -105,24 +66,15 @@ const Home = () => {
     };
 
     const handleDeposit = useCallback(() => {
-        if (!cardPicked)
-            return console.log(
-                "Please picked up a card in deck before deposit!"
-            );
-        setCardPit([
-            ...cardPit,
-            { value: globalDeck[0].value, symbol: globalDeck[0].symbol },
-        ]);
+        if (!cardPicked) return console.log("Please picked up a card in deck before deposit!");
+        setCardPit([...cardPit, { value: globalDeck[0].value, symbol: globalDeck[0].symbol }]);
         handleRemoveItem(0, globalDeck, setGlobalDeck);
         setCardPicked(false);
     }, [cardPicked, cardPit, globalDeck]);
 
     const handleSwitch = useCallback(
         (e) => {
-            if (!cardPicked)
-                return console.log(
-                    "Please picked up a card in deck before switch!"
-                );
+            if (!cardPicked) return console.log("Please picked up a card in deck before switch!");
             handleUpdateItem(
                 e.target.id,
                 {
@@ -167,11 +119,7 @@ const Home = () => {
                         defaultActive
                     />
                 ) : (
-                    <Card
-                        onClick={handleDeposit}
-                        placeholder
-                        badge={cardPicked ? "drop" : false}
-                    />
+                    <Card onClick={handleDeposit} placeholder badge={cardPicked ? "drop" : false} />
                 )}
             </div>
             <div className={styles.player_container}>
