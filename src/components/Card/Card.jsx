@@ -33,7 +33,7 @@ export default function Card({
     return (
         <div
             onClick={(e) => {
-                onClick(e);
+                onClick?.(e);
                 handleActive && handleClick();
             }}
             id={id}
