@@ -1,0 +1,33 @@
+.navbar {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+}
+
+.emoji, .chat {
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: var(--primary-font-color);
+    height: 64px;
+    width: 64px;
+    padding: 4px;
+    border-radius: 50%;
+    font-family: var(--font);
+    font-size: 1.5rem;
+}
+
+.emoji {
+    cursor: pointer;
+}
+
+
+/* 
+.emoji img {
+    width: 36px;
+    height: 36px;
+} */

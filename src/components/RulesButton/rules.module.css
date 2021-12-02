@@ -1,0 +1,59 @@
+h2 {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    font-weight: bolder;
+}
+
+.btn {
+    position: absolute;
+    top : 1rem;
+    right : 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background-color: var(--tertiary--bg-color);
+    color: var(--primary-font-color);
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.popup {
+    z-index: 100;
+    position: absolute;
+    inset: 0;
+    margin: 1rem;
+    background-color: var(--primary-font-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 16px;
+}
+
+.content {
+    color: var(--secondary-font-color);
+    font-weight: 400;
+    overflow-y: scroll;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.btn_container {
+    margin: 16px auto 0;
+}

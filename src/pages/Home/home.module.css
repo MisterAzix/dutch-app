@@ -1,0 +1,32 @@
+.container {
+    position: relative;
+    max-width: 480px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-left: solid 3px var(--tertiary--bg-color);
+    border-right: solid 3px var(--tertiary--bg-color);
+    overflow: hidden;
+}
+
+.board {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.player_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    height: 60%;
+    padding-bottom: 4rem;
+    background-color: var(--secondary--bg-color);
+    border-radius: 50% 50% 0% 0% / 20% 20% 0% 0%;
+}
