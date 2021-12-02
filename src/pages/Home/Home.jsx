@@ -26,7 +26,7 @@ const Home = () => {
         if (!play) {
             setGlobalDeck([]);
             setCardPit([]);
-            setActivePlayerCard(true);
+            setActivePlayerCard(false);
         }
     }, [play]);
 
