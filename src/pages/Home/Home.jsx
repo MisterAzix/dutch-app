@@ -26,6 +26,7 @@ const Home = () => {
     useEffect(() => {
         if (!play) {
             setGlobalDeck([]);
+            setAIDeck([]);
             setCardPit([]);
             setActivePlayerCard(false);
         }
@@ -47,7 +48,6 @@ const Home = () => {
         }
         setGlobalDeck(tempGlobalDeck);
         setPlayerDeck(tempPlayerDeck);
-        setAIDeck(tempPlayerDeck);
         setAIDeck(tempIADeck);
     };
 
