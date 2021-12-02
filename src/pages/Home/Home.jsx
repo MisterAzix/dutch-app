@@ -15,8 +15,9 @@ const Home = () => {
     const [play, setPlay] = useState(false);
     const [end, setEnd] = useState(false);
     const [globalDeck, setGlobalDeck] = useState([]);
-    const [playerDeck, setPlayerDeck] = useState([]);
     const [cardPit, setCardPit] = useState([]);
+    const [playerDeck, setPlayerDeck] = useState([]);
+    const [AIDeck, setAIDeck] = useState([]);
     const [cardPicked, setCardPicked] = useState("");
     const [activePlayerCard, setActivePlayerCard] = useState(false);
     const [modal, setModal] = useState("");
@@ -39,34 +40,50 @@ const Home = () => {
 
     const givePlayerCards = (tempGlobalDeck) => {
         const tempPlayerDeck = [];
+        const tempIADeck = [];
         for (let i = 0; i < 4; i++) {
             tempPlayerDeck.push(tempGlobalDeck.shift());
+            tempIADeck.push(tempGlobalDeck.shift());
         }
         setGlobalDeck(tempGlobalDeck);
         setPlayerDeck(tempPlayerDeck);
+        setAIDeck(tempPlayerDeck);
+        setAIDeck(tempIADeck);
     };
 
     const handleDutch = () => {
         if (!play) return setModal("The game has not started!");
         setActivePlayerCard(true);
-        let score = playerDeck
-            .map(({ value, symbol }) => {
-                switch (value) {
-                    case "A":
-                        return 1;
-                    case "V":
-                        return 10;
-                    case "D":
-                        return 10;
-                    case "R":
-                        if (symbol === "diamond" || symbol === "heart") return 0;
-                        return 13;
-                    default:
-                        return parseInt(value);
-                }
-            })
-            .reduce((prev, curr) => prev + curr);
-        setModal(`You finish the game with ${score} points!`);
+
+        const calculateScore = (arrayDeck) => {
+            return arrayDeck
+                .map(({ value, symbol }) => {
+                    switch (value) {
+                        case "A":
+                            return 1;
+                        case "V":
+                            return 10;
+                        case "D":
+                            return 10;
+                        case "R":
+                            if (symbol === "diamond" || symbol === "heart") return 0;
+                            return 13;
+                        default:
+                            return parseInt(value);
+                    }
+                })
+                .reduce((prev, curr) => prev + curr);
+        };
+
+        let playerScore = calculateScore(playerDeck);
+        let IAScore = calculateScore(AIDeck);
+
+        if (playerScore < IAScore) {
+            setModal(`You won the game with ${playerScore} points VS ${IAScore} points for the IA!`);
+        } else {
+            setModal(`You lost the game with ${playerScore} points VS ${IAScore} points for the IA!`);
+        }
+
         setEnd(true);
     };
 
@@ -111,8 +128,6 @@ const Home = () => {
                     ]);
                     break;
                 case "pitDeck":
-                    // const tempCardPit = [...cardPit];
-                    // const tempPlayerDeck = [...playerDeck];
                     handleUpdateItem(
                         e.target.id,
                         {
@@ -148,6 +163,16 @@ const Home = () => {
     return (
         <div className={styles.container}>
             <Rules className={styles.rules} />
+            <PlayerDeck ai>
+                {AIDeck.map((card, key) => (
+                    <Card
+                        key={key}
+                        symbol={card.symbol}
+                        value={card.value}
+                        defaultActive={activePlayerCard}
+                    />
+                ))}
+            </PlayerDeck>
             {modal && <Modal onClick={handleModal}>{modal}</Modal>}
             <div className={styles.board}>
                 {globalDeck.length > 0 ? (
