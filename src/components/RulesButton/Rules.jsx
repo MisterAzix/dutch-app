@@ -42,7 +42,7 @@ export default function Rules(props) {
                         <br /><br />
                         <span className={styles.bold}>Déroulé :</span>
                         <br />
-                        Chaque joueur dispose de 4 cartes, et prend connaissance de 2 d'entre elles. Il les dispose
+                        Chaque joueur dispose de 4 cartes. Il les dispose
                         toutes face cachée.
                         <br /><br />
                         Le 1er joueur pioche dans la pioche ou dans le 2d <br />
