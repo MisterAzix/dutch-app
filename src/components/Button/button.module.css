@@ -9,3 +9,8 @@
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+.secondary {
+    background-color: var(--primary--bg-color);
+    color: var(--primary-font-color);
+}

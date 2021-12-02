@@ -21,7 +21,8 @@ h2 {
     width: 56px;
     border-radius: 50%;
     font-family: var(--font);
-    font-size: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -31,22 +32,28 @@ h2 {
     inset: 0;
     margin: 1rem;
     background-color: var(--primary-font-color);
-    color: var(--secondary-font-color);
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 1rem;
     border-radius: 16px;
 }
 
-.popup .bold p {
+.content {
+    color: var(--secondary-font-color);
+    font-weight: 400;
+    overflow-y: scroll;
+}
+
+.bold {
     font-weight: bold;
 }
 
-.popup .italic p {
+.italic {
     font-style: italic;
 }
 
-/* .close_btn {
-    padding: 0.5rem 1rem;
-} */
+.btn_container {
+    margin: 16px auto 0;
+}
