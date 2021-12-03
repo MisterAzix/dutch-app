@@ -23,15 +23,16 @@ const Home = () => {
     const [modal, setModal] = useState("");
     /* const [round, setRound] = useState(0); */
 
+    // Reset de la partie
     useEffect(() => {
-        if (!play) {
-            setGlobalDeck([]);
-            setAIDeck([]);
-            setCardPit([]);
-            setActivePlayerCard(false);
-        }
+        if (play) return;
+        setGlobalDeck([]);
+        setAIDeck([]);
+        setCardPit([]);
+        setActivePlayerCard(false);
     }, [play]);
 
+    // Initialisation de la pioche
     const handlePlay = () => {
         let tempGlobalDeck = generateGlobalDeck();
         let tempShuffledDeck = shuffleGlobalDeck(tempGlobalDeck);
@@ -39,6 +40,7 @@ const Home = () => {
         setPlay(true);
     };
 
+    // Distribution des cartes au joueur et à l'IA
     const givePlayerCards = (tempGlobalDeck) => {
         const tempPlayerDeck = [];
         const tempIADeck = [];
@@ -51,6 +53,7 @@ const Home = () => {
         setAIDeck(tempIADeck);
     };
 
+    // Fin de partie : vérification du gagnant
     const handleDutch = () => {
         if (!play) return setModal("The game has not started!");
         setActivePlayerCard(true);
@@ -165,12 +168,7 @@ const Home = () => {
             <Rules className={styles.rules} />
             <PlayerDeck ai>
                 {AIDeck.map((card, key) => (
-                    <Card
-                        key={key}
-                        symbol={card.symbol}
-                        value={card.value}
-                        defaultActive={activePlayerCard}
-                    />
+                    <Card key={key} symbol={card.symbol} value={card.value} defaultActive={activePlayerCard} />
                 ))}
             </PlayerDeck>
             {modal && <Modal onClick={handleModal}>{modal}</Modal>}
