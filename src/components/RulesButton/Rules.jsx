@@ -49,9 +49,9 @@ export default function Rules(props) {
                         paquet. Il a 2 choix :<br />
                         a. L'échanger avec l'une de ses 4 cartes
                         <br />
-                        b.La jeter dans le second paquet
+                        b. La jeter dans le second paquet
                         <br /><br />
-                        <span className={styles.bold}>Fonctionnalités :</span>
+                        {/* <span className={styles.bold}>Fonctionnalités :</span>
                         <br />
                         <span className={styles.italic}>
                             Certaines cartes ont des pouvoirs qui s'activent lorsqu'elles sont jetées →
@@ -62,7 +62,7 @@ export default function Rules(props) {
                         <span className={styles.bold}>Valet :</span> Echanger n'importe quelles cartes du jeu
                         <br />
                         <span className={styles.bold}>As :</span> Donner 1 carte de la pioche au joueur de son choix
-                        <br />
+                        <br /> */}
                     </div>
                     <div className={styles.btn_container}>
                     <Button onClick={handleClick} secondary>
