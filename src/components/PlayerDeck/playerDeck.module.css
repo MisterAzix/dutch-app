@@ -8,12 +8,12 @@
 }
 
 .ia_deck {
+    margin: 0;
     position: absolute;
-    max-width: 100%;
-    width: 100%;
+    max-width: 480px;
+    width: 480px;
     top: 0;
-    left: 35%;
+    left: 50%;
     opacity: 0.75;
-    transform: scale(0.7) translate(-50%, -75%) rotate(180deg);
-
+    transform: scale(0.5) translate(-100%, -100%) rotate(180deg);
 }
