@@ -270,6 +270,7 @@ const Home = () => {
                         onClick={handlePick}
                         symbol={globalDeck[0]?.symbol}
                         value={globalDeck[0]?.value}
+                        defaultActive={cardPicked === "globalDeck"}
                         handleActive
                     />
                 ) : (
